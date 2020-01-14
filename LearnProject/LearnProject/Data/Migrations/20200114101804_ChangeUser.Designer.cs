@@ -4,14 +4,16 @@ using LearnProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LearnProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200114101804_ChangeUser")]
+    partial class ChangeUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,22 +90,6 @@ namespace LearnProject.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("LearnProject.Data.BlogData.ArticleBody", b =>
-                {
-                    b.Property<int>("ArticleBodyId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ArticleBodyId");
-
-                    b.ToTable("ArticleBody");
-                });
-
             modelBuilder.Entity("LearnProject.Data.BlogData.ArticleHeader", b =>
                 {
                     b.Property<int>("ArticleHeaderId")
@@ -116,9 +102,6 @@ namespace LearnProject.Data.Migrations
 
                     b.Property<string>("AuthorId1")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("BodyId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
@@ -137,32 +120,7 @@ namespace LearnProject.Data.Migrations
 
                     b.HasIndex("AuthorId1");
 
-                    b.HasIndex("BodyId");
-
                     b.ToTable("ArticleHeaders");
-                });
-
-            modelBuilder.Entity("LearnProject.Data.BlogData.ImageBlog", b =>
-                {
-                    b.Property<int>("ImageBlogId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ArticleBodyId")
-                        .HasColumnType("int");
-
-                    b.Property<byte[]>("DataBytes")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<DateTime>("UploadTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ImageBlogId");
-
-                    b.HasIndex("ArticleBodyId");
-
-                    b.ToTable("ImageBlog");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -305,19 +263,6 @@ namespace LearnProject.Data.Migrations
                     b.HasOne("LearnProject.Data.BlogData.ApplicationUser", "Author")
                         .WithMany("Articles")
                         .HasForeignKey("AuthorId1");
-
-                    b.HasOne("LearnProject.Data.BlogData.ArticleBody", "Body")
-                        .WithMany()
-                        .HasForeignKey("BodyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("LearnProject.Data.BlogData.ImageBlog", b =>
-                {
-                    b.HasOne("LearnProject.Data.BlogData.ArticleBody", null)
-                        .WithMany("Images")
-                        .HasForeignKey("ArticleBodyId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

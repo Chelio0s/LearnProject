@@ -34,12 +34,14 @@
                     <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
                         <div class="login-account p-30 box-shadow">
                             <div asp-validation-summary="All" class="text-danger"></div>
-                                <input type="text" asp-for="Input.Email" placeholder="Email Address" />
-                                <span asp-validation-for="Input.Email" class="text-danger"></span>
-                                <input type="password" asp-for="Input.Password" placeholder="Password" />
-                                <span asp-validation-for="Input.Password" class="text-danger"></span>
-                                <input type="password" asp-for="Input.ConfirmPassword" placeholder="Confirm Password" />
-                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            <input type="text" asp-for="Input.DisplayName" placeholder="Display Name" />
+                            <span asp-validation-for="Input.DisplayName" class="text-danger"></span>
+                            <input type="text" asp-for="Input.Email" placeholder="Email Address" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            <input type="password" asp-for="Input.Password" placeholder="Password" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            <input type="password" asp-for="Input.ConfirmPassword" placeholder="Confirm Password" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                             <button type="submit" class="submit-btn-1 btn-hover-1">Register</button>
                         </div>
                     </form>
