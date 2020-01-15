@@ -37,8 +37,8 @@
                         <form id="account" method="post">
                             <div class="login-account p-30 box-shadow">
                                 <p>If you have an account with us, Please log in.</p>
-                                <div asp-validation-summary="All" class="text-danger"></div>
-                                <input type="text" asp-for="Input.Email" placeholder="Email Address" />
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="text" asp-for="Input.Email" placeholder="Nickname" />
                                 <span asp-validation-for="Input.Email" class="text-danger"></span>
                                 <input type="password" asp-for="Input.Password" placeholder="Password" />
                                 <span asp-validation-for="Input.Password" class="text-danger"></span>
