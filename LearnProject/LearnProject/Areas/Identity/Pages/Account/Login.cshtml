@@ -47,11 +47,9 @@
                                     @Html.DisplayNameFor(m => m.Input.RememberMe)
                                 </label>
                                 <p><small><a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a></small></p>
+                                <p><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a></p>
                                 <button class="submit-btn-1 btn-hover-1" type="submit">login</button>
                             </div>
-                            <p>
-                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                            </p>
                         </form>
                     </div>
                 </div>
