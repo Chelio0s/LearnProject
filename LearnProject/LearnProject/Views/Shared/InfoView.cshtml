@@ -1,23 +1,49 @@
 ﻿@model LearnProject.Models.InformationViewModel
 
-@{
-    ViewData["Title"] = "InfoView";
-}
-
-<h2>InfoView</h2>
-
-<div>
-    <h4>InformationViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Header)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Message)
-        </dd>
-    </dl>
+<!-- BREADCRUMBS SETCTION START -->
+<div class="breadcrumbs-section plr-200 mb-80">
+    <div class="breadcrumbs overlay-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="breadcrumbs-inner">
+                        <h1 class="breadcrumbs-title">Info View</h1>
+                        <ul class="breadcrumb-list">
+                            <li><a href="/">Home</a></li>
+                            <li>Info View</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Index">Back to stat page</a>
-</div>
+<!-- BREADCRUMBS SETCTION END -->
+<!-- Start page content -->
+<section id="page-content" class="page-wrapper">
+
+    <!-- BLOG SECTION START -->
+    <div class="blog-section mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="blog-details-area">
+                        <!-- blog-details-title -->
+                        <h3 class="blog-details-title mb-30">@Html.DisplayFor(model => model.Header)</h3>
+                        <!-- blog-description -->
+                        <div class="blog-description mb-60">
+                            <p>@Html.DisplayFor(model => model.Message)</p>
+                        </div>
+                        <div>
+                            <a asp-controller="Home" asp-action="Index">Back to stat page</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BLOG SECTION END -->
+
+</section>
+<!-- End page content -->
+
