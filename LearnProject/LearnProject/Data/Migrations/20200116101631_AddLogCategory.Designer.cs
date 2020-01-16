@@ -4,14 +4,16 @@ using LearnProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LearnProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200116101631_AddLogCategory")]
+    partial class AddLogCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,6 +143,48 @@ namespace LearnProject.Data.Migrations
                     b.HasIndex("BodyId");
 
                     b.ToTable("ArticleHeaders");
+                });
+
+            modelBuilder.Entity("LearnProject.Data.BlogData.Error", b =>
+                {
+                    b.Property<int>("ErrorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ErrorTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Header")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ErrorId");
+
+                    b.HasIndex("ErrorTypeId");
+
+                    b.ToTable("Errors");
+                });
+
+            modelBuilder.Entity("LearnProject.Data.BlogData.ErrorType", b =>
+                {
+                    b.Property<int>("ErrorTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ErrorTypeId");
+
+                    b.ToTable("ErrorTypes");
                 });
 
             modelBuilder.Entity("LearnProject.Data.BlogData.ImageBlog", b =>
@@ -310,6 +354,15 @@ namespace LearnProject.Data.Migrations
                     b.HasOne("LearnProject.Data.BlogData.ArticleBody", "Body")
                         .WithMany()
                         .HasForeignKey("BodyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("LearnProject.Data.BlogData.Error", b =>
+                {
+                    b.HasOne("LearnProject.Data.BlogData.ErrorType", "ErrorType")
+                        .WithMany()
+                        .HasForeignKey("ErrorTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
